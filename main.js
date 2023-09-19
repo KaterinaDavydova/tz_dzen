@@ -6,24 +6,24 @@ $('.vacancies__slider').slick({
     focusOnSelect: true,
     speed: 500,
     responsive: [
-        {
-            breakpoint: 768,
-            settings: {
-                arrows: false,
-                centerMode: true,
-                centerPadding: '40px',
-                slidesToShow: 3
-            }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                arrows: false,
-                centerMode: true,
-                centerPadding: '40px',
-                slidesToShow: 1
-            }
-        }
+        // {
+        //     breakpoint: 768,
+        //     settings: {
+        //         arrows: false,
+        //         centerMode: true,
+        //         centerPadding: '40px',
+        //         slidesToShow: 3
+        //     }
+        // },
+        // {
+        //     breakpoint: 480,
+        //     settings: {
+        //         arrows: false,
+        //         centerMode: true,
+        //         centerPadding: '40px',
+        //         slidesToShow: 1
+        //     }
+        // }
     ]
 });
 
@@ -34,15 +34,18 @@ $(function () {
     });
 });
 
-
-const showReview = document.getElementsByClassName('reviews-block__clickToShow');
-const fullReview = document.getElementsByClassName('reviews-block__open');
-
-for (i = 0; i < showReview.length; i++) {
-    showReview[i].addEventListener('click', function () {
-        this.classList.toggle('active')
-
-    })
-}
-
-
+let buttons = document.querySelectorAll(".reviews-block__clickToShow");
+let content = document.querySelectorAll(".reviews-block__open");
+buttons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        let index = Array.prototype.indexOf.call(buttons, button);
+        if (content[index].classList.contains('open')) {
+            content[index].classList.remove('open');
+            button.innerHTML = "Читати відгук повністю";
+        }
+        else {
+            content[index].classList.add("open");
+            button.innerHTML = "Згорнути відгук";
+        }
+    });
+});
